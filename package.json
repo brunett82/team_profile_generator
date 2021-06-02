@@ -18,5 +18,8 @@
   "bugs": {
     "url": "https://github.com/brunett82/team_profile_generator/issues"
   },
-  "homepage": "https://github.com/brunett82/team_profile_generator#readme"
+  "homepage": "https://github.com/brunett82/team_profile_generator#readme",
+  "dependencies": {
+    "inquirer": "^8.1.0"
+  }
 }
