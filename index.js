@@ -6,6 +6,9 @@ const Engineer = require('./src/engineer');
 const Intern = require('./src/intern');
 const Manager = require('./src/manager');
 const { type } = require("os");
+//variables for output
+const finalDir = path.resolve(__dirname, 'dist');
+const finalPath = path.join(finalDir, 'index.html');
 //array to store created employees
 const employeeData = [];
 //Employee type selection
@@ -50,7 +53,27 @@ const mgmtInput = () => {
             message: 'Enter the email for the manager.'
         },
         {
-            type:
-        }
+            type: 'input',
+            name: 'officeNum',
+            message: "Enter the manafer's office number."
+        },
+        {
+            type: 'confirm',
+            name: 'addMore',
+            message: 'Would you like to enter another employee?'
+        },
     ])
+
+    .then(answer => {
+        const mgr = new Manager(answer.mgrName, answer.mgrId, answer.mgrEmail, answer.officeNum);
+        employeeData.push(mgr);
+
+        if (answer.addMore){
+            employeeType();
+        }
+        else {
+            let info = render(employeeData);
+            fs.writeFile()
+        }
+    })
 }
