@@ -9,6 +9,7 @@ const { type } = require("os");
 //variables for output
 const finalDir = path.resolve(__dirname, 'dist');
 const finalPath = path.join(finalDir, 'index.html');
+const publish = require('XXXXXXXXXXXXXX');
 //array to store created employees
 const employeeData = [];
 //Employee type selection
@@ -67,13 +68,63 @@ const mgmtInput = () => {
     .then(answer => {
         const mgr = new Manager(answer.mgrName, answer.mgrId, answer.mgrEmail, answer.officeNum);
         employeeData.push(mgr);
+        console.log(employeeData)
 
         if (answer.addMore){
             employeeType();
         }
         else {
-            let info = render(employeeData);
-            fs.writeFile()
+            let info = publish(employeeData);
+            fs.writeFile(finalPath, info, (err) => {
+                if (err) throw err;
+                console.log(chalk.blue('Employee Created'));
+            })
+        }
+    })
+}
+
+const enginput = () => {
+    inquirer.prompt([
+        {
+            type: 'input',
+            name: 'engName',
+            message: 'Enter name of engineer.',
+        },
+        {
+            type: 'input',
+            name: 'engId',
+            message: 'Enter ID for the engineer.',
+        },
+        {
+            type: 'input',
+            name: 'engEmail',
+            message: 'Enter the email for the engineer.',
+        },
+        {
+            type: 'input',
+            name: 'engGit',
+            message: "Enter the engineer's GitHub username."
+        },
+        {
+            type: 'confirm',
+            name: 'addMore',
+            message: 'Would you like to enter another employee?',
+        },
+    ])
+    .then(answer => {
+        const eng = new Engineer(answer.engName, answer.engId, answer.engEmail, answer.engGit);
+        employeeData.push(eng);
+        console.log(employeeData);
+
+        if (answer.addMore){
+            employeeType();
+        }
+        else {
+            let info = publish(employeeData);
+            fs.writeFile(finalPath, info, (err) => {
+                if (err) throw err;
+                console.log(chalk.blue('Employee Created'))
+            })
         }
     })
 }
