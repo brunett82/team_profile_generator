@@ -83,7 +83,7 @@ const mgmtInput = () => {
     })
 }
 
-const enginput = () => {
+const engInput = () => {
     inquirer.prompt([
         {
             type: 'input',
@@ -114,6 +114,51 @@ const enginput = () => {
     .then(answer => {
         const eng = new Engineer(answer.engName, answer.engId, answer.engEmail, answer.engGit);
         employeeData.push(eng);
+        console.log(employeeData);
+
+        if (answer.addMore){
+            employeeType();
+        }
+        else {
+            let info = publish(employeeData);
+            fs.writeFile(finalPath, info, (err) => {
+                if (err) throw err;
+                console.log(chalk.blue('Employee Created'))
+            })
+        }
+    })
+}
+const intInput = () => {
+    inquirer.prompt([
+        {
+            type: 'input',
+            name: 'intName',
+            message: 'Enter name of intern.',
+        },
+        {
+            type: 'input',
+            name: 'intId',
+            message: 'Enter ID for the intern.',
+        },
+        {
+            type: 'input',
+            name: 'intEmail',
+            message: 'Enter the email for the intern.',
+        },
+        {
+            type: 'input',
+            name: 'intSchool',
+            message: "Enter the Intern's school."
+        },
+        {
+            type: 'confirm',
+            name: 'addMore',
+            message: 'Would you like to enter another employee?',
+        },
+    ])
+    .then(answer => {
+        const int = new Intern(answer.intName, answer.intId, answer.intEmail, answer.intSchool);
+        employeeData.push(int);
         console.log(employeeData);
 
         if (answer.addMore){
