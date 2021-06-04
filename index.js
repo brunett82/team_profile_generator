@@ -5,6 +5,7 @@ const fs = require("fs");
 const Engineer = require('./src/engineer');
 const Intern = require('./src/intern');
 const Manager = require('./src/manager');
+const { type } = require("os");
 //array to store created employees
 const employeeData = [];
 //Employee type selection
@@ -30,3 +31,26 @@ const employeeType = () => {
     })
 }
 employeeType();
+
+const mgmtInput = () => {
+    inquirer.prompt([
+        {
+            type: 'input',
+            name: 'mgrName',
+            message: 'Enter name of manager.'
+        },
+        {
+            type: 'input',
+            name: 'mgrId',
+            message: 'Enter ID for the manager.'
+        },
+        {
+            type: 'input',
+            name: 'mgrEmail',
+            message: 'Enter the email for the manager.'
+        },
+        {
+            type:
+        }
+    ])
+}
