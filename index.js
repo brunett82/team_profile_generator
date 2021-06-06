@@ -1,15 +1,15 @@
 //modules
 const inquirer = require("inquirer");
 const fs = require("fs");
+const path = require("path");
 //required files
 const Engineer = require('./src/engineer');
 const Intern = require('./src/intern');
 const Manager = require('./src/manager');
-const { type } = require("os");
+const publish = require('./distro/htmlPublish')
 //variables for output
-const finalDir = path.resolve(__dirname, 'dist');
+const finalDir = path.resolve(__dirname, 'distro');
 const finalPath = path.join(finalDir, 'index.html');
-const publish = require('XXXXXXXXXXXXXX');
 //array to store created employees
 const employeeData = [];
 //Employee type selection
@@ -77,7 +77,6 @@ const mgmtInput = () => {
             let info = publish(employeeData);
             fs.writeFile(finalPath, info, (err) => {
                 if (err) throw err;
-                console.log(chalk.blue('Employee Created'));
             })
         }
     })
@@ -123,7 +122,6 @@ const engInput = () => {
             let info = publish(employeeData);
             fs.writeFile(finalPath, info, (err) => {
                 if (err) throw err;
-                console.log(chalk.blue('Employee Created'))
             })
         }
     })
@@ -168,7 +166,6 @@ const intInput = () => {
             let info = publish(employeeData);
             fs.writeFile(finalPath, info, (err) => {
                 if (err) throw err;
-                console.log(chalk.blue('Employee Created'))
             })
         }
     })
