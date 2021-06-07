@@ -6,7 +6,7 @@ const path = require("path");
 const Engineer = require('./src/engineer');
 const Intern = require('./src/intern');
 const Manager = require('./src/manager');
-const publish = require('./distro/htmlPublish')
+const publish = require('./htmlPublish')
 //variables for output
 const finalDir = path.resolve(__dirname, 'distro');
 const finalPath = path.join(finalDir, 'index.html');
