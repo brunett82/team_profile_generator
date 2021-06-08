@@ -1,9 +1,9 @@
 const path = require("path");
 const fs = require("fs");
 
-const distroDir = path.resolve(__dirname, "../distro");
+const outputDir = path.resolve(__dirname, "./distro");
 
-const render = employees => {
+const publish = employees => {
     const html = [];
 
     html.push(employees
@@ -24,7 +24,7 @@ const render = employees => {
 };
 
 const pubMgr = manager => {
-    let output = fs.readFileSync(path.resolve(distroDir, "mgr.html"), "utf8");
+    let output = fs.readFileSync(path.resolve(outputDir, "mgr.html"), "utf8");
     output = temp(output, "name", manager.getName());
     output = temp(output, "role", manager.getRole());
     output = temp(output, "email", manager.getEmail());
@@ -34,17 +34,17 @@ const pubMgr = manager => {
 };
 
 const pubEng = engineer => {
-    let output = fs.readFileSync(path.resolve(distroDir, "eng.html"), "utf8");
+    let output = fs.readFileSync(path.resolve(outputDir, "eng.html"), "utf8");
     output = temp(output, "name", engineer.getName());
     output = temp(output, "role", engineer.getRole());
     output = temp(output, "email", engineer.getEmail());
     output = temp(output, "id", engineer.getId());
-    output = temp(output, "github", engineer.getGithub());
+    output = temp(output, "github", engineer.getGitHub());
     return output;
 };
 
 const pubInt = intern => {
-    let output = fs.readFileSync(path.resolve(distroDir, "intern.html"), "utf8");
+    let output = fs.readFileSync(path.resolve(outputDir, "intern.html"), "utf8");
     output = temp(output, "name", intern.getName());
     output = temp(output, "role", intern.getRole());
     output = temp(output, "email", intern.getEmail());
@@ -54,7 +54,7 @@ const pubInt = intern => {
 };
 
 const pubIndex = html => {
-    const output = fs.readFileSync(path.resolve(distroDir, "index.html"), "utf8");
+    const output = fs.readFileSync(path.resolve(outputDir, "index.html"), "utf8");
     return temp(output, "team", html);
 };
 
@@ -63,4 +63,4 @@ const temp = (output, holder, value) => {
     return output.replace(pattern, value);
 };
 
-module.exports = render;
+module.exports = publish;

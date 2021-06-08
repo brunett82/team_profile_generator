@@ -9,7 +9,7 @@ const Manager = require('./src/manager');
 const publish = require('./htmlPublish')
 //variables for output
 const finalDir = path.resolve(__dirname, 'distro');
-const finalPath = path.join(finalDir, 'index.html');
+const finalPath = path.join(finalDir, './index.html');
 //array to store created employees
 const employeeData = [];
 //Employee type selection
@@ -75,7 +75,7 @@ const mgmtInput = () => {
         }
         else {
             let info = publish(employeeData);
-            fs.writeFile(finalPath, info, (err) => {
+            fs.writeFile('./distro/index.html', info, (err) => {
                 if (err) throw err;
             })
         }
@@ -120,7 +120,7 @@ const engInput = () => {
         }
         else {
             let info = publish(employeeData);
-            fs.writeFile(finalPath, info, (err) => {
+            fs.writeFile('./distro/index.html', info, (err) => {
                 if (err) throw err;
             })
         }
@@ -164,9 +164,10 @@ const intInput = () => {
         }
         else {
             let info = publish(employeeData);
-            fs.writeFile(finalPath, info, (err) => {
+            fs.writeFile('./distro/index.html', info, (err) => {
                 if (err) throw err;
             })
         }
     })
 }
+
